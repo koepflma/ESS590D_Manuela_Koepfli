@@ -7,3 +7,11 @@ The active phase of Mt St Helens started on 23 September 204 with a shallow eart
 So far the shallow earthquake swarm is the only precursor and I would like to investigate the noise field in more detail to find previously undetected signs of the imminence of the eruption. A proven method is to calculate the energy in specific frequency bands. For volcanoes the frequency bands 2-5, 4.5-8 and 8-16 Hz are used. The resulting time series is called Real Time Seismic Amplitude (RSAM). However, the USGS analysis of the Mt St Helens 2004 eruption found no foreshocks in the RSAM. Therefore, I focus my attention on the Displacement Seismic Amplitude Ratio (DSAR). DSAR is a quantity that describes attenuation. DSAR can also be normalized and other different processing steps can be added.
 
 To better understand the origin of the noise, I use the covariance matrix eigenvalue distribution to analyze the directionality and coherence of the noise sources.
+
+To work with the folder, you have to clone the github rep first. Therefore copy the ssh (bode button). Then create the environment by typing ''' conda env create --file env.yml'''.
+
+Next, activate the new environment by typing '''conda activate seismo_env'''.
+
+Then you can run the python script like '''python RSAM_DSAR.py''' which will calculate the energy in the three frequency bands and the DSAR.
+
+To calculate the normalized DSAR and the median, use the jupyter notebook. Make sure to open the notebook when the conda environment is still active.
