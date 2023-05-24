@@ -12,6 +12,6 @@ To work with the folder, you have to clone the github rep first. Therefore copy 
 
 Next, activate the new environment by typing ```conda activate seismo_env```.
 
-Then you can run the python script like ```python RSAM_DSAR.py``` which will calculate the energy in the three frequency bands and the DSAR.
+Then you can run the python script like ```python RSAM_DSAR.py year start_day end_day 'network' 'station' 'channel'``` which will calculate the energy in the three frequency bands and the DSAR.
 
 To calculate the normalized DSAR and the median, use the jupyter notebook. Make sure to open the notebook when the conda environment is still active.
