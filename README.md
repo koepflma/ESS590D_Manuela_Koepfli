@@ -8,9 +8,9 @@ So far the shallow earthquake swarm is the only precursor and I would like to in
 
 To better understand the origin of the noise, I use the covariance matrix eigenvalue distribution to analyze the directionality and coherence of the noise sources.
 
-To work with the folder, you have to clone the github rep first. Therefore copy the ssh (bode button). Then create the environment by typing ``` conda env create --file env.yml```.
+To work with the folder, you have to clone the github rep first. Therefore copy the ssh (bode button). Then create the environment by typing ``` conda env create --file ESS590D_env.yml```.
 
-Next, activate the new environment by typing ```conda activate seismo_env```.
+Next, activate the new environment by typing ```conda activate ESS590D_env```.
 
 Then you can run the python script like ```python RSAM_DSAR.py year start_day end_day 'network' 'station' 'channel'``` which will calculate the energy in the three frequency bands and the DSAR.
 
