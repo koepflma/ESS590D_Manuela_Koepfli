@@ -140,60 +140,12 @@ def freq_bands_taper(jday, year, net, sta, cha):
 
 # end define functions------------------------------------------------------------------------
 
-# parser = argparse.ArgumentParser(description='Calculate different frequency bands of RSMA and DSAR.')
-# parser.add_argument('year', type=int, help='Year of interest')
-# parser.add_argument('start_day', type=int, help='Julian day you want to start')
-# parser.add_argument('end_day', type=int, help='Julian day +1 you want to end')
-# parser.add_argument('net', type=str, help='Network you want to process')
-# parser.add_argument('sta', type=str, help='Station you want to process')
-# parser.add_argument('cha', type=str, help='Channel you want to process')
-
-# args = parser.parse_args()
-
-# year = args.year
-# jdays = ['{:03d}'.format(jday) for jday in range(args.start_day,args.end_day)]
-# net = args.net
-# sta = args.sta
-# cha = args.cha
-
-#--> python RSAM_DSAR.py 2004 2 3 'UW' 'EDM' 'EHZ'
-
-# calculate frequencie bands AND save stream
-# single processing write downsampled stream -----------------------------------------------------------------------------
-
-#st_long = obspy.Stream()
-#for i, jday in enumerate(jdays,1):
-#    st_dec = freq_bands_taper(sta,year,jday)
-#    st_long += st_dec
-    
-#    sys.stdout.write('\r{} of {}\n'.format(i, len(jdays)))
-#    sys.stdout.flush()
-
-# multi processing write downsampled stream -----------------------------------------------------------------------------
-#st_long.write("tmp_{}/st_{}_{}.mseed".format(year,sta,year), format="MSEED") # save stream
-
-# # st_long = obspy.Stream()
-# # for i, st_d in enumerate(p.imap(partial(freq_bands_taper,sta,year),jdays),1):
-    
-# #     st_long += st_d # st is downsampled
-    
-# #     sys.stdout.write('\r{} of {}'.format(i, len(jdays)))
-# #     sys.stdout.flush()
-#st_long.write("tmp_{}/{}/st_{}_{}.mseed".format(year,sta,sta,year), format="MSEED") # save stream
-
-stime = time.time()
-p = multiprocessing.Pool(processes=24)
-p.imap_unordered(partial(freq_bands_taper,year=year, net=net, sta=sta, cha=cha), jdays)
-p.close()
-p.join()
-
-# multi processing for several station -----------------------------------------------------------------------------
-
 parser = argparse.ArgumentParser(description='Calculate different frequency bands of RSMA and DSAR.')
 parser.add_argument('year', type=int, help='Year of interest')
 parser.add_argument('start_day', type=int, help='Julian day you want to start')
 parser.add_argument('end_day', type=int, help='Julian day +1 you want to end')
 parser.add_argument('net', type=str, help='Network you want to process')
+parser.add_argument('sta', type=str, help='Station you want to process')
 parser.add_argument('cha', type=str, help='Channel you want to process')
 
 args = parser.parse_args()
@@ -201,19 +153,16 @@ args = parser.parse_args()
 year = args.year
 jdays = ['{:03d}'.format(jday) for jday in range(args.start_day,args.end_day)]
 net = args.net
+sta = args.sta
 cha = args.cha
 
-for sta in ['EDM','SHW','HSR','SOS','TDL','ELK','FL2','CDF','JUN','YEL','SEP','STD']:
-    print('Station {}'.format(sta))
-    stime = time.time()
-    p = multiprocessing.Pool(processes=24)
-    p.imap_unordered(partial(freq_bands_taper,year=year, net=net, sta=sta, cha=cha), jdays)
-    p.close()
-    p.join()
-    print('Calculation tooks {} seconds.'.format(round(time.time()-stime),3))
+--> python RSAM_DSAR.py 2004 2 3 'UW' 'EDM' 'EHZ'
 
-# comment parser out
-#--> python RSAM_DSAR.py 2004 1 366 'UW' 'EHZ'
+stime = time.time()
+p = multiprocessing.Pool(processes=24)
+p.imap_unordered(partial(freq_bands_taper,year=year, net=net, sta=sta, cha=cha), jdays)
+p.close()
+p.join()
 
 
 # call function to test-----------------------------------------------------------------------------
