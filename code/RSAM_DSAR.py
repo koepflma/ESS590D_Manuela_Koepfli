@@ -137,15 +137,7 @@ def nDSAR(datas):
     dsar = datas[3]
     ndsar = dsar/sc.stats.zscore(dsar)
     datas.append(ndsar)
-    return(datas)
-    
-# creates a df for each trace and append this df to a daily df
-# def create_df(datas, ti, freqs_names, df):
-#     datas = np.array(datas)
-#     time = [(ti+j*600).datetime for j in range(datas.shape[1])]
-#     df_tr = pd.DataFrame(zip(*datas), columns=freqs_names, index=pd.Series(time))
-#     df = pd.concat([df, df_tr])
-#     return(df)    
+    return(datas)    
 
 def create_df(datas, ti, freqs_names, df):
     datas = np.array(datas)
