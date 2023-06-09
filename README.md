@@ -21,9 +21,9 @@ Then you can run the python script like ```python RSAM_DSAR.py year start_day en
 To calculate the normalized DSAR and the median, use the jupyter notebook. Make sure to open the notebook when the conda environment is still active.
 
 
-## Data
+## Folder Structure
 The folder ```code``` includes all the used python scripts and jupyter notebooks.
 
-The folder ```data``` includes all used data to create the plors exept of the seismic data, which will be downloaded via the IRIS server.
+The folder ```data``` includes all used data to create the plors exept of the seismic data and the extended2_long.csv files, which can be downloaded via the IRIS server for the seismic data and create with one of the scripts.
 
 The folder ```plots``` includes all saved plots created with any of the provided scriprs.
