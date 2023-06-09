@@ -23,6 +23,11 @@ The folder ```data``` includes all used data to create the plors exept of the se
 
 The folder ```plots``` includes all saved plots created with any of the provided scriprs.
 
+
+
+
+
+
 ## Some more information about the Project
 ### Background
 Mount St. Helens gained widespread recognition due to its infamous 1980 eruption, during which the stratovolcano experienced the catastrophic loss of its northern flank. This eruption had several precursors (Malone et al., 1982). In more recent years, specifically from 23 September 2004 to February 2008, the volcano exhibited renewed activity (Sherrod et al., 2008). The most recent active phase of Mt St Helens started on 23 September 2004 with a shallow earthquake swarm at 9 UTC (2 am local time). Interestingly, this subsequent eruption occurred with minimal precursory indications. The only notable precursor was the detection of a shallow earthquake swarm, which took place just seven days prior to the initial explosion (1 October 2004). During this time, the number and magnitude of the earthquakes, presumably of volcanic origin, increase. Thus far, most analyses have focused on events, such as an increase in the number or magnitude of seismic activities (Sherrod et al., 2008). However, it is worth noting that seismic noise also contains valuable information regarding subsurface changes and can serve as a precursor for detecting the ascent of magma. Successful examples in studying the energy in different seismic frequency bands are Ardid et al., 2022, Caudron et al., 2021, Dempsey et al., 2020.  In contrast, the technique from Seydoux et al., 2016 describes how directional and coherent seismic noise is. Possibly, the combination of several ambient seismic noise methods does not aid in predicting future eruptions but also enhances our comprehension of the underlying physical processes occurring within the volcano.
