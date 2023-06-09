@@ -4,10 +4,8 @@ import obspy
 import obspy.signal.filter
 import datetime
 import scipy
-import glob
 import sys
 import os
-import scipy as sc
 import time
 import matplotlib.pyplot as plt
 import argparse
@@ -135,9 +133,17 @@ def lDSAR(data, samp_rate, datas, freqs_names, freqs, Nm, N):
 
 def nDSAR(datas):
     dsar = datas[3]
-    ndsar = dsar/sc.stats.zscore(dsar)
+    ndsar = dsar/scipy.stats.zscore(dsar)
     datas.append(ndsar)
-    return(datas)    
+    return(datas)
+    
+# creates a df for each trace and append this df to a daily df
+# def create_df(datas, ti, freqs_names, df):
+#     datas = np.array(datas)
+#     time = [(ti+j*600).datetime for j in range(datas.shape[1])]
+#     df_tr = pd.DataFrame(zip(*datas), columns=freqs_names, index=pd.Series(time))
+#     df = pd.concat([df, df_tr])
+#     return(df)    
 
 def create_df(datas, ti, freqs_names, df):
     datas = np.array(datas)
@@ -267,6 +273,35 @@ for netstacha in list_stations:
     print('Calculation tooks {} seconds.'.format(round(time.time()-stime),3))
 
 #--> python RSAM_DSAR.py 2004 2 3
+
+# calculate frequencie bands AND save stream
+# single processing write downsampled stream -----------------------------------------------------------------------------
+
+#st_long = obspy.Stream()
+#for i, jday in enumerate(jdays,1):
+#    st_dec = freq_bands(sta,year,jday)
+#    st_long += st_dec
+    
+#    sys.stdout.write('\r{} of {}\n'.format(i, len(jdays)))
+#    sys.stdout.flush()
+
+# multi processing write downsampled stream -----------------------------------------------------------------------------
+#st_long.write("tmp_{}/st_{}_{}.mseed".format(year,sta,year), format="MSEED") # save stream
+
+# # st_long = obspy.Stream()
+# # for i, st_d in enumerate(p.imap(partial(freq_bands_taper,sta,year),jdays),1):
+    
+# #     st_long += st_d # st is downsampled
+    
+# #     sys.stdout.write('\r{} of {}'.format(i, len(jdays)))
+# #     sys.stdout.flush()
+#st_long.write("tmp_{}/{}/st_{}_{}.mseed".format(year,sta,sta,year), format="MSEED") # save stream
+
+# stime = time.time()
+# p = multiprocessing.Pool(processes=24)
+# p.imap_unordered(partial(freq_bands,year=year, net=net, sta=sta, cha=cha), jdays)
+# p.close()
+# p.join()
 
 # call function to test-----------------------------------------------------------------------------
 # freq_bands(2004,'002','UW','EDM','EHZ')
