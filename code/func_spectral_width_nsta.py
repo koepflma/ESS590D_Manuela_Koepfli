@@ -89,7 +89,7 @@ def spectral_width_nsta(jday, client, list_stations, year, preprocessing_type):
 
             #         # downsample data to 25 Hz
             #         st[0].resample(25)
-                    st.merge(fill_value='interpolate')
+                    st.merge(fill_value='0')
                     stream.append(st[0])
                 print(netstacha, jday)
                 
