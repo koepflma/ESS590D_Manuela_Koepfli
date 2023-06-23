@@ -111,7 +111,8 @@ def spectral_width_nsta(jday, client, list_stations, year, preprocessing_type):
             for preprocessing in preprocessing_type:
                 file_name = '{}_{}_{:03d}_wd{}_av{}'.format(preprocessing,year,jday,int(window_duration_sec), average)
 
-                np.savez_compressed(file_path + file_name,UTC_times=UTC_times, frequencies=frequencies, covariances=covariances, spectral_width=spectral_width, n_sta=0)
+#                 np.savez_compressed(file_path + file_name,UTC_times=UTC_times, frequencies=frequencies, covariances=covariances, spectral_width=spectral_width, n_sta=0)
+                np.savez_compressed(file_path + file_name,UTC_times=UTC_times, frequencies=frequencies, spectral_width=spectral_width, n_sta=0)
 
         else:
 
@@ -131,7 +132,8 @@ def spectral_width_nsta(jday, client, list_stations, year, preprocessing_type):
 
                     file_name = 'NoPreP_{}_{:03d}_wd{}_av{}'.format(year,jday,int(window_duration_sec), average)
 
-                    np.savez_compressed(file_path + file_name,UTC_times=UTC_times, frequencies=frequencies, covariances=covariances, spectral_width=spectral_width, n_sta=len(stream))
+#                     np.savez_compressed(file_path + file_name,UTC_times=UTC_times, frequencies=frequencies, covariances=covariances, spectral_width=spectral_width, n_sta=len(stream))
+                    np.savez_compressed(file_path + file_name,UTC_times=UTC_times, frequencies=frequencies, spectral_width=spectral_width, n_sta=len(stream))
 
             if 'OBS' in preprocessing_type:
                     stream.preprocess()
@@ -145,8 +147,9 @@ def spectral_width_nsta(jday, client, list_stations, year, preprocessing_type):
 
                     file_name = 'OBS_{}_{:03d}_wd{}_av{}'.format(year,jday,int(window_duration_sec), average)
 
-                    np.savez_compressed(file_path + file_name,UTC_times=UTC_times, frequencies=frequencies, covariances=covariances, spectral_width=spectral_width, n_sta=len(stream))    
-
+#                     np.savez_compressed(file_path + file_name,UTC_times=UTC_times, frequencies=frequencies, covariances=covariances, spectral_width=spectral_width, n_sta=len(stream))    
+                    np.savez_compressed(file_path + file_name,UTC_times=UTC_times, frequencies=frequencies, spectral_width=spectral_width, n_sta=len(stream))
+                    
             if 'OBT' in preprocessing_type:
                     stream.preprocess(domain="temporal", method="onebit")
 
@@ -159,7 +162,8 @@ def spectral_width_nsta(jday, client, list_stations, year, preprocessing_type):
 
                     file_name = 'OBT_{}_{:03d}_wd{}_av{}'.format(year,jday,int(window_duration_sec), average)
 
-                    np.savez_compressed(file_path + file_name,UTC_times=UTC_times, frequencies=frequencies, covariances=covariances, spectral_width=spectral_width, n_sta=len(stream))
+#                     np.savez_compressed(file_path + file_name,UTC_times=UTC_times, frequencies=frequencies, covariances=covariances, spectral_width=spectral_width, n_sta=len(stream))
+                    np.savez_compressed(file_path + file_name,UTC_times=UTC_times, frequencies=frequencies, spectral_width=spectral_width, n_sta=len(stream))
 
             if 'ST' in preprocessing_type:
                     stream.preprocess(domain="spectral", method="smooth")
@@ -174,7 +178,8 @@ def spectral_width_nsta(jday, client, list_stations, year, preprocessing_type):
 
                     file_name = 'ST_{}_{:03d}_wd{}_av{}'.format(year,jday,int(window_duration_sec), average)
 
-                    np.savez_compressed(file_path + file_name,UTC_times=UTC_times, frequencies=frequencies, covariances=covariances, spectral_width=spectral_width, n_sta=len(stream))
+#                     np.savez_compressed(file_path + file_name,UTC_times=UTC_times, frequencies=frequencies, covariances=covariances, spectral_width=spectral_width, n_sta=len(stream))
+                    np.savez_compressed(file_path + file_name,UTC_times=UTC_times, frequencies=frequencies, spectral_width=spectral_width, n_sta=len(stream))
 
     end_time = time.time()
     print('Day {} calculation-time: {} s'.format(jday,round(end_time-start_time,3)))
