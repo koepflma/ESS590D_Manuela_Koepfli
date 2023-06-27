@@ -12,7 +12,7 @@ import time
 
 from scatseisnet import ScatteringNetwork
 
-dirpath_save = "../example_long"
+dirpath_save = '/data/wsd03/data_manuela/MtStHelens/scatseisnet/o4_r4_q1_o5_r2_q2_o5_r2_q2/HSR'
 
 # Create directory to save the results
 os.makedirs(dirpath_save, exist_ok=True)
@@ -26,7 +26,7 @@ client = Client("IRIS")
 # Collect waveforms from the datacenter
 stream = client.get_waveforms(
     network="UW",
-    station="SHW",
+    station="HSR",
     location="*",
     channel="EHZ",
     starttime=obspy.UTCDateTime("2004-09-01T00:00"),
@@ -42,7 +42,7 @@ stream.resample(100)
 stream.plot(rasterized=True);
 
 # stream.write("../example_long/scattering_stream.mseed", format="MSEED")
-print('Loading data tooks {} seconds.'.format(round(time.time()-stime,3)))
+print('Loading data tooks {} minutes.'.format(round((time.time()-stime)/60,3)))
 
 # create layers ===============================================================================================
 
@@ -52,7 +52,8 @@ samples_per_segment = int(segment_duration_seconds * sampling_rate_hertz)
 # the network will have 2 layers
 bank_keyword_arguments = (
     {"octaves": 4, "resolution": 4, "quality": 1},
-    {"octaves": 5, "resolution": 2, "quality": 3},
+    {"octaves": 5, "resolution": 2, "quality": 2},
+    {"octaves": 5, "resolution": 2, "quality": 2},
 )
 
 # create scatnet ===============================================================================================
@@ -94,7 +95,8 @@ np.savez(
     "../example_long/scattering_coefficients.npz",
     order_1=scattering_coefficients[0],
     order_2=scattering_coefficients[1],
+    order_3=scattering_coefficients[2],
     times=timestamps,
 )
-print('Scattering transform and saving took {} seconds.'.format(round(time.time()-st),3))
+print('Scattering transform and saving took {} minutes.'.format(round((time.time()-st)/60,3)))
 print('Script run for {} minutes.'.format(round((time.time()-stime)/60,3)))
