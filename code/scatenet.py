@@ -26,7 +26,7 @@ client = Client("IRIS")
 # Collect waveforms from the datacenter
 stream = client.get_waveforms(
     network="UW",
-    station="HSR",
+    station="YEL",
     location="*",
     channel="EHZ",
     starttime=obspy.UTCDateTime("2004-09-01T00:00"),
@@ -41,7 +41,7 @@ stream.filter(type="highpass", freq=1.0)
 stream.resample(100)
 stream.plot(rasterized=True);
 
-# stream.write("../example_long/scattering_stream.mseed", format="MSEED")
+# stream.write(dirpath_save+"/scattering_stream.mseed", format="MSEED")
 print('Loading data tooks {} minutes.'.format(round((time.time()-stime)/60,3)))
 
 # create layers ===============================================================================================
@@ -92,11 +92,11 @@ scattering_coefficients = network.transform(segments, reduce_type=np.mean)
 
 # Save the features in a pickle file
 np.savez(
-    "../example_long/scattering_coefficients.npz",
+    dirpath_save+"/scattering_coefficients.npz",
     order_1=scattering_coefficients[0],
     order_2=scattering_coefficients[1],
     order_3=scattering_coefficients[2],
     times=timestamps,
 )
-print('Scattering transform and saving took {} minutes.'.format(round((time.time()-st)/60,3)))
-print('Script run for {} minutes.'.format(round((time.time()-stime)/60,3)))
+print('Scattering transform and saving took {} hours.'.format(round((time.time()-st)/3600,3)))
+print('Script run for {} hours.'.format(round((time.time()-stime)/3600,3)))
